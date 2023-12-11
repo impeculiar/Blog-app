@@ -1,0 +1,11 @@
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div style="display:none">
+    <%= form.text_field :creator, value: current_user.email, readonly: true %>
+  </div>
+  <div>
+    <%= form.text_area :content, placeholder: 'Комментарий', style: "min-widtn: 120px" %>
+  </p>
+  <p>
+    <%= form.submit class: "btn btn-success" %>
+  </p>
+<% end %>
