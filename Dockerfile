@@ -18,7 +18,14 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install packages needed to build gems and node modules
-RUN apk --update --no-cache add build-base sqlite-dev nodejs yarn tzdata git
+RUN apt-get update -qq \
+    && apt-get install -y curl gnupg2 \
+    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get update -qq \
+    && apt-get install -y nodejs mysql-client libmariadb-dev \
+    && apt-get clean autoclean \
+    && apt-get autoremove --yes \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.10.0
