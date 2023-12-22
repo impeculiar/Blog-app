@@ -18,8 +18,7 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install packages needed to build gems and node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl default-libmysqlclient-dev git libvips node-gyp pkg-config python-is-python3
+RUN apk --update --no-cache add build-base sqlite-dev nodejs yarn tzdata git
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.10.0
