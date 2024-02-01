@@ -15,18 +15,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password
+  host: mysql
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: hikasami_development
+  database: Hikabase
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: hikasami_test
+  database: Hikabase
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,6 +51,6 @@ test:
 #
 production:
   <<: *default
-  database: hikasami_production
-  username: hikasami
+  database: Hikabase
+  username: root
   password: <%= ENV["HIKASAMI_DATABASE_PASSWORD"] %>
